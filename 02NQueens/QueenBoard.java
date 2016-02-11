@@ -1,7 +1,7 @@
-public class Queens{
+public class QueenBoard{
     private int[][]board;
     
-    public Queens(int size){
+    public QueenBoard(int size){
 	board = new int[size][size];
     }
 
@@ -97,10 +97,10 @@ public class Queens{
 	for(int r = 0; r < board.length; r++){
 	    for(int c = 0; c < board[0].length; c++){
 		if(board[r][c]==1)
-		    {ans+="Q ";}
+		    {ans+="Q \t";}
 		else
 		    {
-			ans+= board[r][c]+" ";
+			ans+= "-\t";
 		    }
 
 	    }
@@ -114,7 +114,7 @@ public class Queens{
 	    {
 		throw new IllegalArgumentException("Please specify a size");
 	    }
-	Queens b = new Queens(Integer.parseInt(args[0]));
+	QueenBoard b = new QueenBoard(Integer.parseInt(args[0]));
 
 	System.out.println(b.solve());
 	b.printSolution();
