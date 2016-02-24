@@ -66,7 +66,7 @@ public class Bronze
 		}
 	    //	    System.out.println(sum);
 	    int ret = sum*72*72;
-	    System.out.println(ret);
+	    System.out.println(ret+",7,Zhang,Charles");
 
 	    
 	    
