@@ -1,0 +1,33 @@
+public class KnightsBoard
+{
+
+    int board[][];
+    
+    public KnightsBoard(int size)
+    {
+	boards = new int[size][size];
+    }
+
+    public void addKnight(int row,int col)
+    {
+	board[row][col]--;
+
+	board[row+1][col+3]--;
+	board[row+1][col-3]--;
+	board[row-1][col+3]--;
+	board[row-1][col-3]--;
+
+	board[row+3][col+1]--;
+	board[
+    }
+
+    public void removeKnight(int row,int col)
+    {
+
+    }
+
+
+
+
+
+}

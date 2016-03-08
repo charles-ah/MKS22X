@@ -1,0 +1,11 @@
+public class Driver
+{
+    public static void main(String[]args)
+    {
+	Sorts test = new Sorts();
+	int[] arr = {5,4,3,2,1};
+	test.printArray(test.merge(arr,0,5));
+    }
+
+    
+}
