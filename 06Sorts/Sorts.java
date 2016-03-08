@@ -5,6 +5,10 @@ import java.util.*;
 public class Sorts
 {
 
+    public static String name(){
+	return "7,Zhang,Charles";     //  or    "6,Last,First"
+    }
+
     public static int indexOf(int[] nums,int num)
     {
        
@@ -129,8 +133,10 @@ public class Sorts
     {
 	ArrayList<Integer> ret = new ArrayList<Integer>(0);
 	int j=0;
-	for(int i=0;i<Math.min(a.length,b.length);i++)
-	    {
+	int i=0;
+	//	for(int i=0;i<Math.min(a.length,b.length);i++)
+	while(i<Math.min(a.length,b.length) && j<Math.min(a.length,b.length))
+	{
 		if(a[j]>=b[i])
 		    {
 			while(a[j]>=b[i])
@@ -160,31 +166,34 @@ public class Sorts
 				    }
 				else
 				    {
+					//i++;
 					break;
 				    }
 			    }
 			ret.add(b[i]);
+			i++;
 		    }
-		//		j++;
+		//	       j++;
 	    }
-	if(a.length>=b.length)
+
+	if(a.length>b.length)
 	    {
-		for(int i=b.length;i<a.length;i++)
+		for(int k=b.length;k<a.length;k++)
 		    {
-			ret.add(a[i]);
+			ret.add(a[k]);
 		    }
 	    }
 	if(a.length<b.length)
 	    {
-		for(int i=a.length;i<b.length;i++)
+		for(int k=a.length;k<b.length;k++)
 		    {
-			ret.add(b[i]);
+			ret.add(b[k]);
 		    }
 	    }
 	int[] result= new int[ret.size()];
-	for(int i=0;i<ret.size();i++)
+	for(int k=0;k<ret.size();k++)
 	    {
-		result[i]=ret.get(i);
+		result[k]=ret.get(k);
 	    }
 	printArray(result);
 	return result;
