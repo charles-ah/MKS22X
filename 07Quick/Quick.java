@@ -83,12 +83,40 @@ public class Quick
 	return 0;
     }
 
+    public static void quickSort(int[]data)
+    {
+	//quickSort(data,0,data.length,0);
+	for(int i=0;i<data.length;i++)
+	    {
+		quickselect(data,i);
+	    }
+    }
 
+    private static void quickSort(int[]data,int start,int end,int k)
+    {
+	int index=partition(data,start,end);                                                                                                                                                               
+        if(index!=k)
+	    {
+		quickSort(data,start,index,k);                                                                                                                                              
+		quickSort(data,index,end,k);                                                                                                                                                
+	    }
+	else if(k<data.length-1)
+	    {
+		quickSort(data,0,data.length,k+1);
+	    }
+    }
     public static void main(String[]args)
     {
 	//	Quick test = new Quick();
-	int[] arr = {1,2,3};
-	System.out.println(quickselect(arr,1));
+	int[] arr = {3,2,1,4,5};
+	//        System.out.println(quickselect(arr,0));
+	//System.out.println(quickselect(arr,1));
+	//System.out.println(quickselect(arr,2));
+	//System.out.println(quickselect(arr,3));
+	//System.out.println(quickselect(arr,4));
+//printArray(arr);
+			   quickSort(arr);
+	printArray(arr);
     }
 
 }
