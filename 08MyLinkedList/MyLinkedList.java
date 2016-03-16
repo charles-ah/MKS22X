@@ -12,9 +12,9 @@ public class MyLinkedList
 	
 	public LNode(int val)
 	{
-	    System.out.println("creating new node with value"+val);
+	    //	    System.out.println("creating new node with value"+val);
 	    data=val;
-	    System.out.println("node data"+data);
+	    // System.out.println("node data"+data);
 	}
 
 	public void setNext(LNode node)
@@ -23,7 +23,7 @@ public class MyLinkedList
 	}
 	public int get()
 	{
-	    System.out.println(data);
+	    // System.out.println(data);
 	    return data;
 	}
 	public void set(int n)
@@ -42,7 +42,7 @@ public class MyLinkedList
     public void add(int newValue)
     {
 	LNode cur=start;
-	System.out.println("adding"+newValue);
+	//System.out.println("adding"+newValue);
 	if(size==0)
 	    {
 		start = new LNode(newValue);
@@ -51,7 +51,7 @@ public class MyLinkedList
 	    {
 		while(cur.next!=null)
 		    {
-			System.out.println("k");
+			//System.out.println("k");
 			cur = cur.next;
 		    }
 		cur.next=new LNode(newValue);
@@ -66,8 +66,8 @@ public class MyLinkedList
 	LNode cur=start;
 	for(int i=0;i<size;i++)
 	    {
-		System.out.println("??");
-		System.out.println(cur.data);
+		//System.out.println("??");
+		//System.out.println(cur.data);
 		ret += cur.get()+",";
 		cur=cur.next;
 	    }
