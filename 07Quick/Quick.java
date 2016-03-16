@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Quick
 {
     public static String name()
@@ -22,7 +24,7 @@ public class Quick
 	num[b]=temp;
     }
 
-    private static int partition(int[]data, int left, int right) 
+    private static int partitionOld(int[]data, int left, int right) 
     {
 
 	int k=(int)(Math.random()*(right-left))+left;
@@ -54,17 +56,17 @@ public class Quick
     // this allows your quickselect method to decide where to go next.
 
     
-    public static int quickselect(int[]data, int k) 
+    public static int quickselectOld(int[]data, int k) 
     {
-	return quickhelp(data,k,0,data.length);
+	return quickhelpOld(data,k,0,data.length);
     }
-    //return the kth smallest value.
+       //return the kth smallest value.
     // when k = 0 return the smallest.
     // 0 <= k < data.length
 
-    private static int quickhelp(int[]data,int k,int start,int end)
+    private static int quickhelpOld(int[]data,int k,int start,int end)
     {
-	int index=partition(data,start,end);
+	int index=partitionOld(data,start,end);
 	if(index==k)
 	    {
 		return data[index];
@@ -73,42 +75,110 @@ public class Quick
 	    {
 		if(index>k)
 		    {
-			return quickhelp(data,k,start,index);
+			return quickhelpOld(data,k,start,index);
 		    }
 		if(index<k)
 		    {
-			return quickhelp(data,k,index,end);
+			return quickhelpOld(data,k,index,end);
 		    }
 	    }
 	return 0;
     }
 
-    public static void quickSort(int[]data)
+    public static void quickSortOld(int[]data)
     {
 	//quickSort(data,0,data.length,0);
 	for(int i=0;i<data.length;i++)
 	    {
-		quickselect(data,i);
+		quickselectOld(data,i);
 	    }
     }
 
-    private static void quickSort(int[]data,int start,int end,int k)
+    private static void quickSortOld(int[]data,int start,int end,int k)
     {
-	int index=partition(data,start,end);                                                                                                                                                               
+	int index=partitionOld(data,start,end);                                                                                                                                                               
         if(index!=k)
 	    {
-		quickSort(data,start,index,k);                                                                                                                                              
-		quickSort(data,index,end,k);                                                                                                                                                
+		quickSortOld(data,start,index,k);                                                                                                                                              
+		quickSortOld(data,index,end,k);                                                                                                                                                
 	    }
 	else if(k<data.length-1)
 	    {
-		quickSort(data,0,data.length,k+1);
+		quickSortOld(data,0,data.length,k+1);
 	    }
+    }
+
+    public static void quickSort(int[]data)                                                                                                                                                                
+    {                                                                                                                                                                                                      
+        quickSort(data,0,data.length,0); 
+	/*
+        for(int i=0;i<data.length;i++)                                                                                                                                                                     
+            {                                                                                                                                                                                              
+                quickselect(data,i);                                                                                                                                                                       
+            }
+	*/                                                                                                                                                                                              
+    }                                                                                                                                                                                                      
+                                                                                                                                                                                                           
+    private static void quickSort(int[]data,int start,int end,int k)                                                                                                                                       
+    {                                                                                                                                                                                                      
+        int[] index=partition(data,start,end);                                                                                                                                                               
+        if(!(index[0]>=k&&k<=index[1]))                                                                                                                                                                    
+            {                                                                                                                                                                                              
+                quickSort(data,start,index[0]+1,k);                                                                                                                                                           
+                quickSort(data,index[1],end,k);                                                                                                                                                                        }                                                                                                                                                                                              
+        else if(k<data.length)                                                                                                                                                                          
+            {                                                                                                                                                                                              
+                quickSort(data,0,data.length+1,k+1);                                                                                                                                                        
+            }                                                                                                                                                                                              
+    } 
+
+    private static int[] partition(int[]data, int left, int right)                                                                                                                                         
+    {                                                                                                                                                                                                      
+                                                                                                                                                                                                           
+        int k=(int)(Math.random()*(right-left+1))+left;                                                                                                                                                      
+                                                                                                                                                                                                           
+        for(int i=left;i<right;i++)                                                                                                                                                                        
+            {                                                                                                                                                                                             
+                if(data[i]<=data[k]&&i>k)                                                                                                                                                                   
+                    {                                                                                                                                                                                      
+                        swap(data,k,i);                                                                                                                                                                    
+			//k=i;                                                                                                                                                                                                   }                                                                                                                                                                                                      else if(data[i]>data[k]&&i<k)                                                                                                                                                                                  {                                                                                                                                                                                   
+			swap(data,k,i);                                                                                                                                                                 
+			//k=i;                                                                                                                                                                            
+		    }                                                                                                                                                                                            }
+	for(int i=right-1;i>=left;i--)                                                                                                                                                                     
+            { 
+		if(data[i]<=data[k]&&i>k)                                                                                                                                                                                   {                                                                                                                                                                                                              swap(data,k,i);                                                                                                                                                                     			      k=i;                                                                                                                                                                                		     }                                                                                                                                                                                       		        else if(data[i]>data[k]&&i<k)                                                                                                                                                               		     {                                                                                                                                                                                       
+                        swap(data,k,i);                                                                                                                                                                    
+                        k=i;                                                                                                                                                                               
+                   }                                                                                                                                                                                     	    } 
+
+	int a,b;
+	a=0;
+	b=0;
+	for(int i=0;i<data.length;i++)
+	    {
+		if(data[i]==data[k])
+		    {
+			a=i;
+		    }
+		if(i>0&&data[i-1]==data[k])
+		    {
+			b=i;
+		    }
+	    }
+	int[] lol={a,b};
+	return lol;
     }
     public static void main(String[]args)
     {
 	//	Quick test = new Quick();
-	int[] arr = {3,2,1,4,5};
+	int n=4000;
+	int[] arr = new int[n];
+	for(int i=0;i<n;i++)
+	    {
+		arr[i]=(int)(Math.random()*3);
+	    }
 	//        System.out.println(quickselect(arr,0));
 	//System.out.println(quickselect(arr,1));
 	//System.out.println(quickselect(arr,2));
@@ -116,6 +186,7 @@ public class Quick
 	//System.out.println(quickselect(arr,4));
 //printArray(arr);
 			   quickSort(arr);
+//	Arrays.sort(arr);
 	printArray(arr);
     }
 
