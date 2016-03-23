@@ -38,7 +38,7 @@ public class MyLinkedList<T>
 	size=0;
     }
     
-    public int getSize(){return size;}
+    public int size(){return size;}
     
     public void add(T newValue)
     {
@@ -49,7 +49,7 @@ public class MyLinkedList<T>
 		start = new LNode(newValue);
 		end = start;
 	    }
-	else
+	else 
 	    {
 		end.next = new LNode(newValue);
 		end = end.next;
@@ -60,6 +60,12 @@ public class MyLinkedList<T>
     
     public T get(int index)
     {
+	if(index<0||index>size-1)
+	    {
+		return null;
+		//throw new IllegalArgumentException("you fool");
+	    }
+
 	LNode cur = start;
 	for(int i=0;i<index;i++)
 	    {
@@ -70,8 +76,13 @@ public class MyLinkedList<T>
 
     public T set(int index,T newValue)
     {
+	if(index<0||index>size-1)
+	    {
+		return null;
+	    }
+
 	LNode cur =start;
-	for(int i=0;i<index;i++)
+	for(int i=0;i<index-1;i++)
 	    {
 		cur=cur.next;
 	    }
@@ -82,6 +93,12 @@ public class MyLinkedList<T>
 
     public T remove(int index)
     {
+	if(index<0||index>size-1)
+	    {
+		return null;
+		//throw new IllegalArgumentException("you fool");
+	    }
+	
 	LNode cur=start;
 	
 	if(index==0)
@@ -104,18 +121,24 @@ public class MyLinkedList<T>
 		size--;
 		return cur.get();
 	    }
-	else
+	else if(index==size-1)
 	    {
 		size--;
 		cur.next=null;
 		return cur.get();
 	    }
-	
+	return null;
 	
     }
 
     public boolean add(int index,T value)
     {
+	if(index<0 || index>size)
+	    {
+		return false;
+		//throw new IllegalArgumentException("you fool");
+	    }
+	
 	LNode cur=start;
 	if(index==0)
 	    {
@@ -130,7 +153,7 @@ public class MyLinkedList<T>
 	    {
 		cur=cur.next;
 	    }
-	if(index<size-1)
+	if(index<size)
 	    {
 		LNode befcur = cur;
 		LNode afcur = cur.next;
@@ -140,15 +163,17 @@ public class MyLinkedList<T>
 		size++;
 		return true;
 	    }
-	else
+	else if(index==size)
 	    {
 		add(value);
 		return true;
 	    }
-	//	return false;
+		return false;
     }
     
-    public String toString()
+    
+
+    public String toString(boolean b)
     {
 	String ret="";
 	LNode cur=start;
@@ -159,10 +184,13 @@ public class MyLinkedList<T>
 		    {
 			ret+=" ,";
 		    }
-		cur=cur.next;
+		if(i<size-1)
+		    {
+			cur=cur.next;
+		    }
 	    }
 	
-	return "["+ret+"]";
+	return "["+ret+"]" +" head: "+start.get() +" tail: "+end.get();
     }
     
 }
