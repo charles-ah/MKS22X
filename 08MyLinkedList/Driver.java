@@ -14,7 +14,7 @@ public class Driver
 	    }
 	System.out.println(test.toString(true));
 	test.add(0,"nope");
-	System.out.println(test.toString(false));
+	System.out.println(test.toString(true));
 	test.add(3,"nope");
 	System.out.println(test.toString(true));
 	/*

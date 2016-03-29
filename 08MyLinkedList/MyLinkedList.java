@@ -1,11 +1,12 @@
-public class MyLinkedList<T>
+import java.util.*;
+public class MyLinkedList<T> implements Iterable<T>
 {
 
     LNode start;
     LNode end;
     private int size;
 
-
+    
     private class LNode
     {
 	T data;
@@ -30,6 +31,38 @@ public class MyLinkedList<T>
 	public void set(T n)
 	{
 	    data=n;
+	}
+    }
+
+    public Iterator<T> iterator()
+    {
+	return new LinkedIterator();
+    }
+    
+    public class LinkedIterator implements Iterator<T>
+    {
+	LNode cur;
+	
+	public LinkedIterator()
+	    {
+		cur = start;
+	    }
+
+	public boolean hasNext()
+	{
+	    return cur!=null;
+	}
+
+	public T next()
+	{
+	    T var = cur.get();
+	    cur=cur.next;
+	    return var;
+	}
+	
+	public void remove()
+	{
+	    throw new UnsupportedOperationException();
 	}
     }
     
@@ -173,13 +206,16 @@ public class MyLinkedList<T>
     
     
 
-    public String toString(boolean b)
+    public String toString()
     {
 	String ret="";
 	LNode cur=start;
 	for(int i=0;i<size;i++)
 	    {
-		ret += (cur.get()).toString();
+		if(cur!=null)
+		    {
+		    ret += (cur.get()).toString();
+		}
 		if(i<size-1)
 		    {
 			ret+=" ,";
@@ -193,4 +229,20 @@ public class MyLinkedList<T>
 	return "["+ret+"]" +" head: "+start.get() +" tail: "+end.get();
     }
     
+    public static void main(String[]args)
+    {
+	MyLinkedList<Integer> n = new MyLinkedList<Integer>();
+	for(int i=0;i<10;i++)
+	    {
+		n.add(i);
+	    }
+	System.out.println(n);
+	for(Integer x: n)
+	    {
+		System.out.print(x+" ");
+	    }
+	System.out.println();
+
+    }
+
 }
