@@ -58,4 +58,9 @@ public class MyStack<T>
     {
 	return size()==0;
     }
+
+    public String toString()
+    {
+	return list.toString();
+    }
 }
