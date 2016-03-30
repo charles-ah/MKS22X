@@ -2,38 +2,38 @@ public class ParenDemo
 {
     public static boolean isMatching(String s)
     {
-	MyStack<String> stack = new MyStack<String>();
+	MyStack<Character> stack = new MyStack<Character>();
 	for(int i=0;i<s.length();i++)
 	    {
-		//		System.out.println(stack.toString());
+			System.out.println(stack.toString());
 		if(!stack.isEmpty())
 		    {
-		if(s.charAt(i)==')'&&stack.peek().equals("("))
-		    {
+			if(s.charAt(i)==')'&&stack.peek()=='(')
+			    {
 			//System.out.println("matched");
-			stack.pop();
+				stack.pop();
+			    }
+			if(s.charAt(i)==']'&&stack.peek()=='[')                                                                                                                                                                        {                                                                                                                                                                                                               stack.pop();                                                                                                                                                                                          } 
+			if(s.charAt(i)=='}'&&stack.peek()=='{')
+			    {
+				stack.pop();
+			    }
+			if(s.charAt(i)=='>'&&stack.peek()=='<')
+			    {
+				stack.pop();
+			    }
+			
 		    }
-		if(s.charAt(i)==']'&&stack.peek().equals("["))                                                                                                                                                                 {                                                                                                                                                                                                               stack.pop();                                                                                                                                                                                          } 
-		if(s.charAt(i)=='}'&&stack.peek().equals("{"))
+		else if(s.charAt(i)==')'||s.charAt(i)==']'||s.charAt(i)=='}'||s.charAt(i)=='>')
 		    {
-			stack.pop();
+			return false;
 		    }
-		if(s.charAt(i)=='>'&&stack.peek().equals("<"))
+      	       if(s.charAt(i)=='('||s.charAt(i)=='['||s.charAt(i)=='{'||s.charAt(i)=='<')
 		    {
-			stack.pop();
-		    }
-		    }
-		else
-		    {
-			stack.push(s.substring(i,i+1));
-		    }
-		
-      		if(s.charAt(i)=='('||s.charAt(i)=='['||s.charAt(i)=='{'||s.charAt(i)=='<')
-		    {
-			stack.push(s.substring(i,i+1));
+			stack.push(s.charAt(i));
 		    }
 	    }
-	//	System.out.println(stack.toString());
+		System.out.println(stack.toString());
 	return stack.size()==0;
 	
     }

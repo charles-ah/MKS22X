@@ -63,4 +63,20 @@ public class MyStack<T>
     {
 	return list.toString();
     }
+    
+    public static void main(String[]args)
+    {
+	MyStack<Integer> s = new MyStack<Integer>();
+	for(int i=0;i<10;i++)
+	    {
+		s.push((int)(10*Math.random()));
+		System.out.print(s.peek()+" ");
+	    }
+	System.out.println();
+	for(int i=0;i<10;i++)
+	    {
+		System.out.print(s.pop()+" ");
+	    }
+    }
+
 }

@@ -55,7 +55,22 @@ public class MyQueue<T>
 	return list.size()==0;
     }
 
+    public static void main(String[]agrs)
+    {
+	MyQueue<Integer> q = new MyQueue<Integer>();
 
+	for(int i=0;i<10;i++)
+	    {
+		int n=(int)(10*Math.random());
+		q.enqueue(n);
+		System.out.print(n+" ");
+	    }
+	System.out.println();
+	for(int i=0;i<10;i++)
+	    {
+		System.out.print(q.dequeue()+" ");
+	    }
+    }
 
 
 }
