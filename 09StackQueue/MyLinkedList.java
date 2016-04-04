@@ -3,6 +3,7 @@ public class MyLinkedList<T> implements Iterable<T>{
     private class LNode{
 	private T value;
 	private LNode next;
+	private LNode prev;
 	public LNode(T v){
 	    value = v;
 	}
@@ -12,6 +13,10 @@ public class MyLinkedList<T> implements Iterable<T>{
 	public LNode getNext(){
 	    return next;
 	}
+	public LNode getPrev()
+	{
+	    return prev;
+	}
 	public T setValue(T v){
 	    T old = value;
 	    value = v;
@@ -19,6 +24,10 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 	public void setNext(LNode n){
 	    next = n;
+	}
+	public void setPrev(LNode n)
+	{
+	    prev=n;
 	}
 	public String toString(){
 	    return value.toString();
@@ -78,9 +87,11 @@ public class MyLinkedList<T> implements Iterable<T>{
     public boolean add(T value){
 	if(head == null){
 	    head = new LNode(value);
+	    head.setPrev(null);
 	    tail = head;
 	}else{
 	    tail.setNext(new LNode(value));
+	    tail.getNext().setPrev(tail);
 	    tail = tail.getNext();
 	}
 	size++;
@@ -94,6 +105,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	if(index == 0){
 	    temp = head;
 	    head = head.getNext();
+	    head.setPrev(null);
 	    size--;
 	    if(head == null){
 		tail = null;

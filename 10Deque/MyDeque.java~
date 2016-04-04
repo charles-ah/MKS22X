@@ -1,0 +1,118 @@
+public class MyDeque<T>
+{
+    private T []deq;
+    private int start,end,size;
+  
+    @SuppressWarnings("unchecked")
+    public MyDeque()
+	{
+	    size=0;
+	    start=end=0;
+	    deq=(T[]) new Object[10];
+	}
+    /*
+    public MyDeque(int s,int size)
+	{
+	    this.size=size;
+	    start=s;
+	    end=s;
+	    deq=new T[size];
+	}
+    */
+    @SuppressWarnings("unchecked")
+    public void grow()
+    {
+	T[]copy=(T[])new Object[2*size];
+	int i=start;
+	while(true)
+	    {
+		copy[i]=deq[i];
+		i=(i+1)%size;
+		if(i==start)
+		    {
+			break;
+		    }
+	    }
+    }
+    
+    public void addFirst(T value)
+    {
+	if(size==0)
+	    {		
+		deq[start]=value;
+		size++;
+	    }
+	else if(size<10)
+	    {
+		start=(start-1)%size;
+		deq[start]=value;
+		size++;
+	    }
+	else
+	    {
+		grow();
+		addFirst(value);
+	    }
+	
+    }
+     
+    public void addLast(T value)
+    {
+	if(size==0)                                                                                                                                                                                        
+            {                                                                                                                                                                                              
+                deq[end]=value;                                                                                                                                                                          
+                size++;                                                                                                                                                                                    
+            }                                                                                                                                                                                              
+        else if(size<10)                                                                                                                                                                                   
+            {                                                                                                                                                                                              
+                end=(end+1)%size;                                                                                                                                                                      
+                deq[end]=value;                                                                                                                                                                          
+                size++;                                                                                                                                                                                    
+            }                                                                                                                                                                                              
+        else                                                                                                                                                                                               
+            {                                                                                                                                                                                              
+                grow();                                                                                                                                                                                    
+                addLast(value);                                                                                                                                                                           
+            }   
+    }
+
+    public T removeFirst()  
+    {
+	T temp = deq[start];
+	deq[start]=null;
+	start=(start+1)%size;
+	return temp;
+    }
+
+    public T removeLast() 
+    {
+	T temp = deq[end];
+	deq[end]=null;
+	end=(end-1)%size;
+	return temp;
+    }
+    
+    public T getFirst()
+    {
+	return deq[start];
+    }
+    
+    public T getLast()
+    {
+	return deq[end];
+    }
+
+    public toString()
+	{
+	    String ret="{";
+	    for(int i=0;i<size;i++)
+		{
+		    ret+=deq[i].toString();
+		    if(i<size-1)
+			{
+			    ret+=",";
+			}
+		}
+	    return ret+"}";
+	}
+}
