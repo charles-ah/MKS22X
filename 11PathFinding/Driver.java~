@@ -1,0 +1,14 @@
+public class Driver
+{
+
+    public static void main(String[] args)
+    {
+	BetterMaze test = new BetterMaze("data.txt");
+		test.setAnimate(true);
+
+		//	System.out.println(test.solveBFS());
+	System.out.println(test.toString());
+	//	System.out.println(test.toString());
+    }
+
+}

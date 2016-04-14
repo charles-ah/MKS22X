@@ -4,7 +4,10 @@ public class FrontierStack<T> implements Frontier<T>{
     /***You can extend another class OR wrap around it***/
     private MyStack<T> frontier;
 
-    
+    public FrontierStack()
+	{
+	    frontier = new MyStack<T>();
+	}
 
     public void add(T element)
     {

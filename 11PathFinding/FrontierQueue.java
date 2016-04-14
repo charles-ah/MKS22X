@@ -4,7 +4,10 @@ public class FrontierQueue<T> implements Frontier<T>{
     /***You can extend another class OR wrap around it***/
     private MyQueue<T> frontier;
 
-    
+    public FrontierQueue()
+	{
+	    frontier = new MyQueue<T>();
+	}
 
     public void add(T element)
     {
@@ -18,7 +21,7 @@ public class FrontierQueue<T> implements Frontier<T>{
 
     public boolean hasNext()
     {
-	return frontier.size()==0;
+	return frontier.peek()!=null;
     }
 
 }
