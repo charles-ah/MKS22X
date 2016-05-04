@@ -9,26 +9,26 @@ public class BSTree<T extends Comparable<T>>{
 	public Node(T value){
 	    data=value;
 	}
-	public Node(T value, Node left, Node right){
+	public Node(T value, Node l, Node r){
 	    data=value;
-	    this.left=left;
-	    this.right=right;
+	    left=l;
+	    right=r;
 	}
 
-	private void setLeft(Node newL){
-	    left=newL;
+	private void setLeft(Node l){
+	    left=l;
 	}
 	private Node getLeft(){
 	    return left;
 	}
-	private void setRight(Node newR){
-	    right=newR;
+	private void setRight(Node r){
+	    right=r;
 	}
 	private Node getRight(){
 	    return right;
 	}
-	private void setData(T newD){
-	    data=newD;
+	private void setData(T val){
+	    data=val;
 	}
 	private T getData(){
 	    return data;
@@ -89,9 +89,9 @@ public class BSTree<T extends Comparable<T>>{
 	    root=new Node(value);
 	}else{
 	    root.add(value);
-
 	}
     }
+
     public String toString(){
 	return root.toString();
     }
